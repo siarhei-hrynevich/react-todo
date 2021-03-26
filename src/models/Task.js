@@ -5,12 +5,4 @@ export default class Task {
     this.text = text;
     this.completed = completed;
   }
-
-  getText() {
-    return this.text;
-  }
-
-  isCompleted() {
-    return this.completed;
-  }
 }
