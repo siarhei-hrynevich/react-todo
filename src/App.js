@@ -31,6 +31,8 @@ class App extends React.Component {
   }
 
   addTask = (task) => {
+    if (task.text == undefined || task.text === '')
+      return;
     while (this.contains(this.state.items, e => e.text === task.text)) {
       task.text += '1';
     }
@@ -57,11 +59,11 @@ class App extends React.Component {
     return false; 
   }
 
-  search = (searched) => {
-      this.setState(state => ({
-        items: state.items,
-        renderedItems: state.items.filter(item => item.text.includes(searched))
-      }));
+  search = (searched) => {    
+    this.setState(state => ({
+      items: state.items,
+      renderedItems: state.items.filter(item => item.text.includes(searched))
+    }));
   }
 
   componentDidMount() {
