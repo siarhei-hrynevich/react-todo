@@ -1,45 +1,8 @@
-import './App.css';
+import './css/App.css';
 import React, { useState } from 'react';
-import Task from './models/Task'
+import List from './components/List';
+import Input from './components/Input';
 
-function ItemComponent({ item, onClick, onDelete }) {
-  return (
-    <div class="Row">
-      <div>
-        <input type="checkbox" onClick={onClick} checked={item.completed}></input>
-        <label>{item.text}</label>
-      </div>
-      <a class="Image-button" onClick={onDelete}>
-        <img alt="delete" src="delete_icon.png"></img>
-      </a>
-    </div>
-  );
-}
-
-function Input({onAdd}) {
-  const [state, setState] = useState()
-  return (
-    <div class="Row">
-      <div class="Line">
-        <input class="Text-input" onChange={(e => setState(e.target.value))} type="text"/>
-        <a class="Image-button" onClick={() => onAdd(new Task(state, false))} >
-          <img alt="add" src="add_icon.png"></img>
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function List({ items, onClick, onDelete }) {
-  const elements = items.map((i, index) => 
-    <ItemComponent item={i} onClick={() => onClick(index)} onDelete={() => onDelete(index)}/>
-    );
-  return (
-    <div>
-      {elements}
-    </div>
-  );
-}
 
 class App extends React.Component {
   constructor(props) {
