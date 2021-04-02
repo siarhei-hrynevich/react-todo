@@ -43,3 +43,7 @@
 .Delete-icon {
   background: url("https://cdn1.iconfinder.com/data/icons/ios-and-android-glyphs-set-2/52/delete__remove__trash__dustbin-512.png");  
 }
+
+.Hide {
+  display: none;
+}

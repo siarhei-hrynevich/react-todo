@@ -2,16 +2,14 @@ import './css/App.css';
 import React, { useState } from 'react';
 import List from './components/List';
 import Input from './components/Input';
-
+import AlertPopup from './components/AlertPopup';
+import { AlertContext } from './components/AlertContext';
 
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = { renderedItems: [], items: [] };
-  
-    this.changeTaskState = this.changeTaskState.bind(this);
-    this.deleteTask = this.deleteTask.bind(this);
-    this.addTask = this.addTask.bind(this);
   }
 
   changeTaskState = (index) => {
@@ -19,6 +17,8 @@ class App extends React.Component {
     items[index].completed = !items[index].completed;
 
     this.setState(state => ({ items: items }));
+
+    this.context.showMessage(`Task ${items[index].completed ? '' : 'not '} complete`);
   }
 
   deleteTask = (index) => {
@@ -27,6 +27,7 @@ class App extends React.Component {
       items: newItems,
       renderedItems: newItems
     })); 
+    this.context.showMessage('Task was deleted');
   }
 
   addTask = (task) => {
@@ -43,6 +44,8 @@ class App extends React.Component {
           task
         ]
     }))
+
+    this.context.showMessage('Task was added');
   }
 
   contains = (array, pattern) => {
@@ -70,7 +73,6 @@ class App extends React.Component {
       items: items,
       renderedItems: items
     }));
-    localStorage.setItem('items', this.state.items);
   }
 
   componentWillUnmount() {
@@ -85,15 +87,16 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            Todos
-          </p>
+          <p>Todos</p>
           <Input onAdd={this.addTask} onSearch={this.search}/>
+          <AlertPopup />
           <List items={this.state.renderedItems} onClick={this.changeTaskState} onDelete={this.deleteTask} />
         </header>
       </div>
     );
   }
 }
+
+App.contextType = AlertContext;
 
 export default App;
