@@ -59,10 +59,13 @@ class App extends React.Component {
     return false; 
   }
 
-  search = (searched) => {    
+  search = (searched, priority) => {    
+    console.log(priority);
     this.setState(state => ({
       items: state.items,
-      renderedItems: state.items.filter(item => item.text.includes(searched))
+      renderedItems: 
+        (priority === 'All' ? state.items : state.items.filter(item => item.priority === priority))
+          .filter(item => item.text.includes(searched))
     }));
   }
 
