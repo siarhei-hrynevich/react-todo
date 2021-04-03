@@ -7,7 +7,7 @@ export default function Input({ onAdd, onSearch }) {
   const [priority, setPriority] = useState('Low');
   
   return (
-    <div className="Row">
+    <div>
       <div className="Line">
         <input className="Text-input" onChange={(e => { setText(e.target.value); onSearch(e.target.value, priority) })} type="text" />
         <a className="Image-button" onClick={() => onAdd(new Task(text, priority, false))} >

@@ -7,7 +7,7 @@ export default function List({ items, onClick, onDelete }) {
       <Item key={i} item={i} onClick={() => onClick(index)} onDelete={() => onDelete(index)}/>
       );
     return (
-      <div>
+      <div className="List">
         {elements}
       </div>
     );

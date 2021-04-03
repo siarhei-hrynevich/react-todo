@@ -1,7 +1,7 @@
 
 .Row {
   display: flex;
-	justify-content: space-around;
+	justify-content:space-between;
   vertical-align: auto;
   line-height: 100px;
 
@@ -48,4 +48,9 @@
 
 .Hide {
   display: none;
+}
+
+.List {
+  width: 80%;
+  padding-left: 10%;
 }
